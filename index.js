@@ -1,17 +1,15 @@
 const utils = require('./utils');
 
 const run = async () => {
-    const users = await utils.readUsersData('user.txt');
-    await utils.readTweetData(users, 'tweet.txt');
+    const tweets = await utils.readTweetData('tweet.txt');
+    const users = utils.sortDataByKey(await utils.readUsersData('user.txt'));
 
-    // for (const username in users) {
-    //     console.log(users[username].getUsername() + '\n')
-    // }
-
-    const out = utils.sortDataByKey(users)
-
-    console.log(out)
+    for (const key in users) {
+        console.log(`${users[key].getUsername()}`);
+        tweets[users[key].getUsername()]?.tweets.map((tweet) => {
+            console.log(`\t@${users[key].getUsername()}: ${tweet}`);
+        });
+    }
 }
 
 run();
-
