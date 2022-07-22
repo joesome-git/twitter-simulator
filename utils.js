@@ -52,6 +52,15 @@ const readTweetData = async (users, filename) => {
     }
 }
 
+const sortDataByKey = (data) => {
+    return Object.keys(data).sort().reduce((obj, key) => {
+        obj[key] = data[key];
+        return obj;
+    }, {}
+    );
+}
+
 exports.readUsersData = readUsersData;
 exports.readTweetData = readTweetData;
+exports.sortDataByKey = sortDataByKey;
 

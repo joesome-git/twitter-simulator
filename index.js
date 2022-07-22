@@ -8,7 +8,9 @@ const run = async () => {
     //     console.log(users[username].getUsername() + '\n')
     // }
 
-    console.log(users)
+    const out = utils.sortDataByKey(users)
+
+    console.log(out)
 }
 
 run();
