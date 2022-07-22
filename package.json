@@ -1,0 +1,16 @@
+{
+  "name": "twitter",
+  "version": "1.0.0",
+  "description": "Twitter simulator",
+  "main": "index.js",
+  "author": "Joel Chigumba",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index",
+    "test": "jest"
+  },
+  "dependencies": {
+    "jest": "^28.1.3"
+  }
+}
