@@ -1,27 +1,56 @@
 // https://jestjs.io/
 
-const utils = require('../utils');
+const _SORT = require('../modules/sort');
+const _USERS = require('../modules/users');
+const _TWEETS = require('../modules/tweets');
 
-test('readUserData', async () => {
-    const user = {
+test('read user file', async () => {
+    const testUser = {
         username: 'Alan',
-        following: {},
+        following: ['Martin']
     }
 
-    const users = await utils.readUsersData('user.txt');
+    const users = await _USERS.readData('user.txt');
 
-    expect(users['Alan'].getUsername()).toBe(user.username);
-    // expect(users['Alan'].getFollowing()).toEqual(user.following);
-    // expect(users['Alan'].getTwitterFeed()).toEqual(user.twitterFeed);
+    expect(users['Alan']?.username).toBe(testUser?.username);
+    expect(users['Alan']?.following).toEqual(testUser?.following);
 });
 
-test('readTweetData', async () => {
-    const userTweets = [
+test('read tweets file', async () => {
+    const testData = [
         'If you have a procedure with 10 parameters, you probably missed some.',
         'Random numbers should not be generated with a method chosen at random.'
     ];
 
-    const tweets = await utils.readTweetData('tweet.txt');
+    const tweets = await _TWEETS.readData('tweet.txt');
 
-    expect(tweets['Alan']?.tweets).toEqual(userTweets);
+    expect(tweets['Alan']).toEqual(testData);
+});
+
+test('sort data by key', async () => {
+    const testData = {
+        'a': {
+            'name': 'a'
+        },
+        'b': {
+            'name': 'b'
+        },
+        'd': {
+            'name': 'd'
+        }
+    };
+
+    const sorted = _SORT.sortByKey({
+        'd': {
+            'name': 'd'
+        },
+        'b': {
+            'name': 'b'
+        },
+        'a': {
+            'name': 'a'
+        }
+    });
+
+    expect(sorted).toEqual(testData);
 });
