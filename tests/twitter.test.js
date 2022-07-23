@@ -29,28 +29,28 @@ test('read tweets file', async () => {
 
 test('sort data by key', async () => {
     const testData = {
-        'a': {
-            'name': 'a'
+        'd': {
+            'name': 'd'
         },
         'b': {
             'name': 'b'
         },
-        'd': {
-            'name': 'd'
+        'a': {
+            'name': 'a'
         }
     };
 
     const sorted = _SORT.sortByKey({
-        'd': {
-            'name': 'd'
+        'a': {
+            'name': 'a'
         },
         'b': {
             'name': 'b'
         },
-        'a': {
-            'name': 'a'
+        'd': {
+            'name': 'd'
         }
     });
 
-    expect(sorted).toEqual(testData);
+    expect(testData).toEqual(sorted);
 });
