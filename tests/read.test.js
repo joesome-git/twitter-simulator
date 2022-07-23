@@ -1,6 +1,5 @@
 // https://jestjs.io/
 
-const _SORT = require('../modules/sort');
 const _USERS = require('../modules/users');
 const _TWEETS = require('../modules/tweets');
 
@@ -25,32 +24,4 @@ test('read tweets file', async () => {
     const tweets = await _TWEETS.readData('tweet.txt');
 
     expect(tweets['Alan']).toEqual(testData);
-});
-
-test('sort data by key', async () => {
-    const testData = {
-        'a': {
-            'name': 'a'
-        },
-        'b': {
-            'name': 'b'
-        },
-        'd': {
-            'name': 'd'
-        }
-    };
-
-    const sorted = _SORT.sortByKey({
-        'd': {
-            'name': 'd'
-        },
-        'b': {
-            'name': 'b'
-        },
-        'a': {
-            'name': 'a'
-        }
-    });
-
-    expect(sorted).toEqual(testData);
 });

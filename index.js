@@ -7,6 +7,7 @@ const run = async () => {
     const usersData = _SORT.sortByKey(await _USERS.readData('user.txt'));
 
     for (const key in usersData) {
+        
         const username = usersData[key].username;
 
         console.log(`${username}`);

@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "node index",
-    "test": "jest"
+    "tests": "jest"
   },
   "dependencies": {
     "jest": "^28.1.3"
