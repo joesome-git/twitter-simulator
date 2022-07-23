@@ -1,13 +1,13 @@
 class User {
     constructor(username) {
+        this.following = [];
         this.username = username;
-        this.following = {};
     }
 
-    addFollowing = (user) => {
-        // Only add if not already added - collision
-        if (!this.following[user.getUsername()]) {
-            this.following[user.getUsername()] = user;
+    addFollowing = (username) => {
+        // Only add if not already added
+        if (!this.following.includes(username)) {
+            this.following.push(username)
         }
     }
 

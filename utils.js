@@ -26,15 +26,13 @@ const readUsersData = async (filename) => {
         }
 
         following.split(',').map((followsUsername) => {
-            const newUser = new User(followsUsername);
-
-            users[username].addFollowing(newUser);
-
             // Only add if not already added - collision
             if (!users[followsUsername]) {
-                users[followsUsername] = newUser;
+                users[followsUsername] = new User(followsUsername);
             }
-        })
+
+            users[username].addFollowing(followsUsername);
+        });
     }
 
     return users;
@@ -53,7 +51,6 @@ const readTweetData = async (filename) => {
         let username = line.split('> ')[0];
         let tweet = line.split('> ')[1];
 
-
         if (!tweets[username]) {
             tweets[username] = {
                 username,
@@ -68,7 +65,7 @@ const readTweetData = async (filename) => {
 }
 
 const sortDataByKey = (data) => {
-    
+
     return Object.keys(data).sort().reduce((obj, key) => {
         obj[key] = data[key];
         return obj;
