@@ -5,16 +5,16 @@ const run = async () => {
     const usersData = utils.sortDataByKey(await utils.readUsersData('user.txt'));
 
     for (const key in usersData) {
-        const username = usersData[key].getUsername();
+        const username = usersData[key].username;
 
         console.log(`${username}`);
 
-        tweetsData[username]?.tweets.map((tweet) => {
+        tweetsData[username]?.map((tweet) => {
 
             console.log(`\t@${username}: ${tweet}`);
 
-            usersData[key]?.getFollowing().map((following) => {
-                tweetsData[following]?.tweets?.map((tweet) => {
+            usersData[key]?.following.map((following) => {
+                tweetsData[following]?.map((tweet) => {
                     console.log(`\t@${following}: ${tweet}`);
                 })
             })
