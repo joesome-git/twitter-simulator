@@ -23,3 +23,18 @@ Ward
 ### How to run the tests
 
 * `yarn run tests`
+
+### Expected output
+
+```bash
+yarn run v1.22.19
+$ jest
+ PASS  tests/sort.test.js
+ PASS  tests/read.test.js
+
+Test Suites: 2 passed, 2 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        0.389 s, estimated 1 s
+Ran all test suites.
+✨  Done in 1.61s.

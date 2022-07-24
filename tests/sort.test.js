@@ -2,30 +2,58 @@
 
 const _SORT = require('../modules/sort');
 
-test('sort data by key', async () => {
+test('sort object by key', async () => {
     const testData = {
         'a': {
-            'name': 'a'
+            'key': 'a'
         },
         'b': {
-            'name': 'b'
+            'key': 'b'
         },
         'd': {
-            'name': 'd'
+            'key': 'd'
         }
     };
 
-    const sorted = _SORT.sortByKey({
+    const sorted = _SORT.sortObjectByKey({
         'd': {
-            'name': 'd'
+            'key': 'd'
         },
         'b': {
-            'name': 'b'
+            'key': 'b'
         },
         'a': {
-            'name': 'a'
+            'key': 'a'
         }
     });
+
+    expect(sorted).toEqual(testData);
+});
+
+test('sort array by key', async () => {
+    const testData = [
+        {
+            'key': 'a'
+        },
+        {
+            'key': 'b'
+        },
+        {
+            'key': 'd'
+        }
+    ];
+
+    const sorted = _SORT.sortArrayByKey([
+        {
+            'key': 'd'
+        },
+        {
+            'key': 'b'
+        },
+        {
+            'key': 'a'
+        }
+    ]);
 
     expect(sorted).toEqual(testData);
 });

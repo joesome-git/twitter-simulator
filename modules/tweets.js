@@ -18,15 +18,22 @@ const readData = async (filename) => {
             crlfDelay: Infinity
         });
 
+        let key = 0;
+
         for await (const line of fileData) {
             let username = line.split('> ')[0];
             let tweet = line.split('> ')[1];
-            // read each line and populate tweets object for each user
+            // read each line and populate tweets object map for each user
             if (!tweets[username]) {
-                tweets[username] = [tweet];
+                tweets[username] = [{
+                    key, username, tweet
+                }];
             } else {
-                tweets[username].push(tweet);
+                tweets[username].push({
+                    key, username, tweet
+                });
             }
+            key++;
         }
 
     } catch (error) {

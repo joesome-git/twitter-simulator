@@ -23,7 +23,7 @@ const readData = async (filename) => {
             const username = line.split(' follows ')[0];
             const following = line.split(' follows ')[1].replace(/\s/g, '');
 
-            // read each line and populate users object
+            // read each line and populate users object map
             if (!users[username]) {
                 users[username] = {
                     username, following: []
@@ -32,12 +32,12 @@ const readData = async (filename) => {
 
             following.split(',').map((followsUsername) => {
                 // read each line and populate users object
-                if (!users[followsUsername]) { // if user (following) does not already exists
+                if (!users[followsUsername]) { // if user (following) does not already exists, add to users object map
                     users[followsUsername] = {
                         username: followsUsername, following: []
                     };
                 }
-                // if user does is not already following `followsUsername`
+                // if user does is not already follow `followsUsername`
                 // add user as follower to `followsUsername`
                 if (!users[username]?.following.includes(followsUsername)) { 
                     users[username]?.following.push(followsUsername);

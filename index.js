@@ -5,27 +5,30 @@ const _TWEETS = require('./modules/tweets');
 const run = async () => {
 
     try {
-
+        // read data from files
         const tweetsData = await _TWEETS.readData('tweet.txt');
-        const usersData = _SORT.sortByKey(await _USERS.readData('user.txt'));
+        const usersData = _SORT.sortObjectByKey(await _USERS.readData('user.txt'));
 
-        for (const key in usersData) {
+        for (const user in usersData) {
 
-            const username = usersData[key].username;
+            const username = usersData[user]?.username;
 
-            console.log(`${username}`);
+            console.log(username);
+            // remove any users being followed that has no tweets to add to user twitter feed
+            const followingUsers = usersData[user]?.following.filter((followingUser) => !!tweetsData[followingUser]);
 
-            tweetsData[username]?.map((tweet) => {
-                // print user tweets 
+            // get all tweets from users followed
+            const followingUsersTweets = followingUsers.map((followingUser) => tweetsData[followingUser]);
+
+            // if tweets by user exist, add to twitter feed along with tweets from users followed
+            let twitterFeed = (tweetsData[username] || []).concat(followingUsersTweets).flat();
+
+            // sort twitter feed according to tweets post order
+            _SORT.sortArrayByKey(twitterFeed).map(({ username, tweet }) => {
                 console.log(`\t@${username}: ${tweet}`);
-                // print tweets of user's following
-                usersData[key]?.following.map((following) => {
-                    tweetsData[following]?.map((tweet) => {
-                        console.log(`\t@${following}: ${tweet}`);
-                    });
-                })
             });
         }
+
     } catch (error) {
         console.error(error);
     }

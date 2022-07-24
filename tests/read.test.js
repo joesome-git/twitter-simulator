@@ -17,8 +17,16 @@ test('read user file', async () => {
 
 test('read tweets file', async () => {
     const testData = [
-        'If you have a procedure with 10 parameters, you probably missed some.',
-        'Random numbers should not be generated with a method chosen at random.'
+        {
+            "key": 0,
+            "tweet": "If you have a procedure with 10 parameters, you probably missed some.",
+            "username": "Alan",
+        },
+        {
+            "key": 2,
+            "tweet": "Random numbers should not be generated with a method chosen at random.",
+            "username": "Alan",
+        }
     ];
 
     const tweets = await _TWEETS.readData('tweet.txt');
