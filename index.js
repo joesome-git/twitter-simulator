@@ -3,25 +3,31 @@ const _USERS = require('./modules/users');
 const _TWEETS = require('./modules/tweets');
 
 const run = async () => {
-    const tweetsData = await _TWEETS.readData('tweet.txt');
-    const usersData = _SORT.sortByKey(await _USERS.readData('user.txt'));
 
-    for (const key in usersData) {
-        
-        const username = usersData[key].username;
+    try {
 
-        console.log(`${username}`);
+        const tweetsData = await _TWEETS.readData('tweet.txt');
+        const usersData = _SORT.sortByKey(await _USERS.readData('user.txt'));
 
-        tweetsData[username]?.map((tweet) => {
+        for (const key in usersData) {
 
-            console.log(`\t@${username}: ${tweet}`);
+            const username = usersData[key].username;
 
-            usersData[key]?.following.map((following) => {
-                tweetsData[following]?.map((tweet) => {
-                    console.log(`\t@${following}: ${tweet}`);
-                });
-            })
-        });
+            console.log(`${username}`);
+
+            tweetsData[username]?.map((tweet) => {
+
+                console.log(`\t@${username}: ${tweet}`);
+
+                usersData[key]?.following.map((following) => {
+                    tweetsData[following]?.map((tweet) => {
+                        console.log(`\t@${following}: ${tweet}`);
+                    });
+                })
+            });
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 

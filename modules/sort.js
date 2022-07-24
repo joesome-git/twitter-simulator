@@ -4,10 +4,19 @@
  */
 
 const sortByKey = (data) => {
-    return Object.keys(data).sort().reduce((obj, key) => {
-        obj[key] = data[key];
-        return obj;
-    }, {});
+
+    try {
+        
+        return Object.keys(data).sort().reduce((obj, key) => {
+            obj[key] = data[key];
+            return obj;
+        }, {});
+    } catch (error) {
+        console.error(error);
+    } finally {
+        return data;
+    }
+
 }
 
 exports.sortByKey = sortByKey;

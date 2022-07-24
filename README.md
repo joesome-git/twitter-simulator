@@ -1,6 +1,6 @@
 # **Twitter Simulator**
 
-## A program to simulate twitter and outputs user interaction feed to the terminal
+A program to simulate twitter and outputs user interaction feed to the terminal
 
 ### How to run the program
 

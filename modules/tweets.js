@@ -11,23 +11,31 @@ const readData = async (filename) => {
 
     const tweets = {};
 
-    const fileData = readline.createInterface({
-        input: fs.createReadStream(`files/${filename}`),
-        crlfDelay: Infinity
-    });
+    try {
 
-    for await (const line of fileData) {
-        let username = line.split('> ')[0];
-        let tweet = line.split('> ')[1];
+        const fileData = readline.createInterface({
+            input: fs.createReadStream(`files/${filename}`),
+            crlfDelay: Infinity
+        });
 
-        if (!tweets[username]) {
-            tweets[username] = [tweet];
-        } else {
-            tweets[username].push(tweet);
+        for await (const line of fileData) {
+            let username = line.split('> ')[0];
+            let tweet = line.split('> ')[1];
+
+            if (!tweets[username]) {
+                tweets[username] = [tweet];
+            } else {
+                tweets[username].push(tweet);
+            }
         }
+
+    } catch (error) {
+        console.error(`Failed to read file: ${filename}`);
+        throw error;
+    } finally {
+        return tweets;
     }
 
-    return tweets;
 }
 
 exports.readData = readData;
