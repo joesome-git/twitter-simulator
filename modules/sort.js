@@ -20,14 +20,15 @@ const sortObjectByKey = (data) => {
 
 /**
  * @param data - Array containing the data to sort by key
+ * @param key - Key used to sort array
  * @returns sorted array
  */
 
-const sortArrayByKey = (data) => {
+const sortArrayByKey = (data, key = 'key') => {
 
     try {
         // sort array by keys
-        return data.sort((a, b) => a.key < b.key ? -1 : 1);
+        return data.sort((a, b) => a[key] < b[key] ? -1 : 1);
     } catch (error) {
         console.error(error);
     }
