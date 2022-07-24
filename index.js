@@ -16,9 +16,9 @@ const run = async () => {
             console.log(`${username}`);
 
             tweetsData[username]?.map((tweet) => {
-
+                // print user tweets 
                 console.log(`\t@${username}: ${tweet}`);
-
+                // print tweets of user's following
                 usersData[key]?.following.map((following) => {
                     tweetsData[following]?.map((tweet) => {
                         console.log(`\t@${following}: ${tweet}`);

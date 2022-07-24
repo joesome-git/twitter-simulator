@@ -12,7 +12,7 @@ const readData = async (filename) => {
     const users = {};
 
     try {
-
+        // read file contents
         const fileData = readline.createInterface({
             input: fs.createReadStream(`files/${filename}`),
             crlfDelay: Infinity
@@ -23,7 +23,7 @@ const readData = async (filename) => {
             const username = line.split(' follows ')[0];
             const following = line.split(' follows ')[1].replace(/\s/g, '');
 
-            // Only add if not already added to prevent overwride
+            // read each line and populate users object
             if (!users[username]) {
                 users[username] = {
                     username, following: []
@@ -31,14 +31,15 @@ const readData = async (filename) => {
             }
 
             following.split(',').map((followsUsername) => {
-                // Only add if not already added to prevent overwride
-                if (!users[followsUsername]) {
+                // read each line and populate users object
+                if (!users[followsUsername]) { // if user (following) does not already exists
                     users[followsUsername] = {
                         username: followsUsername, following: []
                     };
                 }
-
-                if (!users[username]?.following.includes(followsUsername)) {
+                // if user does is not already following `followsUsername`
+                // add user as follower to `followsUsername`
+                if (!users[username]?.following.includes(followsUsername)) { 
                     users[username]?.following.push(followsUsername);
                 }
             });

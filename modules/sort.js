@@ -6,17 +6,16 @@
 const sortByKey = (data) => {
 
     try {
-        
+        // sort Object by keys
         return Object.keys(data).sort().reduce((obj, key) => {
             obj[key] = data[key];
             return obj;
         }, {});
     } catch (error) {
         console.error(error);
-    } finally {
-        return data;
     }
 
+    return data;
 }
 
 exports.sortByKey = sortByKey;
