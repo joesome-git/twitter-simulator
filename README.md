@@ -29,12 +29,12 @@ Ward
 ```bash
 yarn run v1.22.19
 $ jest
+ PASS  tests/tweet.test.js
  PASS  tests/sort.test.js
- PASS  tests/read.test.js
 
 Test Suites: 2 passed, 2 total
-Tests:       4 passed, 4 total
+Tests:       5 passed, 5 total
 Snapshots:   0 total
-Time:        0.389 s, estimated 1 s
+Time:        0.438 s, estimated 1 s
 Ran all test suites.
-✨  Done in 1.61s.
+✨  Done in 2.21s.
