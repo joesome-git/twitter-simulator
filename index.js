@@ -6,26 +6,26 @@ const run = async () => {
 
     try {
         // read data from files
-        const tweetsData = await _TWEETS.readData('tweet.txt');
+        const feedData = await _TWEETS.readData('tweet.txt');
         const usersData = _SORT.sortObjectByKey(await _USERS.readData('user.txt'));
-        // console.log(tweetsData)
+
         for (const user in usersData) {
 
             const username = usersData[user]?.getUsername();
 
             console.log(username);
             // remove any users being followed that has no tweets to add to user twitter feed
-            const followingUsers = usersData[user]?.getFollowing().filter((followingUser) => !!tweetsData[followingUser]);
+            const followingUsers = usersData[user]?.getFollowing().filter((followingUser) => !!feedData[followingUser]);
 
             // get all tweets from users followed
-            const followingUsersTweets = followingUsers.map((followingUser) => tweetsData[followingUser]);
+            const followingUsersTweets = followingUsers.map((followingUser) => feedData[followingUser]);
 
             // if tweets by user exist, add to twitter feed along with tweets from users followed
-            let twitterFeed = (tweetsData[username] || []).concat(followingUsersTweets).flat();
+            let twitterFeed = (feedData[user]?.getTweets() || []).concat(followingUsersTweets.map((feed) => feed?.getTweets()).flat());
 
             // sort twitter feed according to tweets post order
-            _SORT.sortArrayByKey(twitterFeed).map(({ username, tweet }) => {
-                console.log(`\t@${username}: ${tweet}`);
+            _SORT.sortArrayByKey(twitterFeed, 'tweetId').map((tweet) => {
+                console.log(`\t@${tweet.getUsername()}: ${tweet.getMessage()}`);
             });
         }
     } catch (error) {

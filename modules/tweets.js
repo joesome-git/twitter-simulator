@@ -1,15 +1,17 @@
 const fs = require('fs');
 const readline = require('readline');
+const Feed = require('../class/Feed');
+const Tweet = require('../class/Tweet');
 
 /**
  * https://nodejs.org/api/readline.html#readline_example_read_file_stream_line_by_line
  * @param filename - name of file to open
- * @returns JSONObject containing all tweets data
+ * @returns JSONObject containing all tweetFeed data
  */
 
 const readData = async (filename) => {
 
-    const tweets = {};
+    const tweetFeed = {};
 
     try {
         // read file contents
@@ -18,30 +20,31 @@ const readData = async (filename) => {
             crlfDelay: Infinity
         });
 
-        let tweetIndexPosition = 0;
+        let tweetId = 0;
 
         for await (const line of fileData) {
+
             let username = line.split('> ')[0];
-            let tweet = line.split('> ')[1].substring(0, 139);
-            // read each line and populate tweets object map for each user
-            // ensure only 140 characters are stored in each tweet
-            if (!tweets[username]) {
-                tweets[username] = [{
-                    key: tweetIndexPosition, username, tweet
-                }];
+            let message = line.split('> ')[1].substring(0, 139);
+            // ensure only 140 characters are stored in each message
+
+            const newTweet = new Tweet({ tweetId, username, message });
+
+            // read each line and populate tweetFeed object map for each user
+            if (!tweetFeed[username]) {
+                tweetFeed[username] = new Feed(newTweet)
             } else {
-                tweets[username].push({
-                    key: tweetIndexPosition, username, tweet
-                });
+                tweetFeed[username].addTweet(newTweet);
             }
-            tweetIndexPosition++;
+
+            tweetId++;
         }
 
     } catch (error) {
         console.error(`Failed to read file: ${filename}`);
         throw error;
     } finally {
-        return tweets;
+        return tweetFeed;
     }
 }
 
