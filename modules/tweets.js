@@ -1,7 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
-const Feed = require('../class/Feed');
-const Tweet = require('../class/Tweet');
+const Feed = require('../classes/Feed');
+const Tweet = require('../classes/Tweet');
 
 /**
  * https://nodejs.org/api/readline.html#readline_example_read_file_stream_line_by_line

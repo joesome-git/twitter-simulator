@@ -1,6 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
-const User = require('../class/User');
+const User = require('../classes/User');
 
 /**
  * https://nodejs.org/api/readline.html#readline_example_read_file_stream_line_by_line

@@ -1,7 +1,7 @@
 // https://jestjs.io/
 
-const Tweet = require('../class/Tweet');
-const Feed = require('../class/Feed');
+const Tweet = require('../classes/Tweet');
+const Feed = require('../classes/Feed');
 const _USERS = require('../modules/users');
 const _TWEETS = require('../modules/tweets');
 
