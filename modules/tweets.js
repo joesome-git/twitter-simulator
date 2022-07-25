@@ -18,22 +18,23 @@ const readData = async (filename) => {
             crlfDelay: Infinity
         });
 
-        let key = 0;
+        let tweetIndexPosition = 0;
 
         for await (const line of fileData) {
             let username = line.split('> ')[0];
-            let tweet = line.split('> ')[1];
+            let tweet = line.split('> ')[1].substring(0, 139);
             // read each line and populate tweets object map for each user
+            // ensure only 140 characters are stored in each tweet
             if (!tweets[username]) {
                 tweets[username] = [{
-                    key, username, tweet
+                    key: tweetIndexPosition, username, tweet
                 }];
             } else {
                 tweets[username].push({
-                    key, username, tweet
+                    key: tweetIndexPosition, username, tweet
                 });
             }
-            key++;
+            tweetIndexPosition++;
         }
 
     } catch (error) {
