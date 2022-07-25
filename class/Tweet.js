@@ -5,6 +5,18 @@ class Tweet {
         this.message = message;
     }
 
+    setId = (id) => {
+        this.is = is;
+    }
+
+    setUsername = (username) => {
+        this.username = username;
+    }
+
+    setMessage = (message) => {
+        this.message = message;
+    }
+
     getId = () => {
         return this.tweetId;
     }
