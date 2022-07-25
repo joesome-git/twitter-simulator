@@ -1,11 +1,11 @@
 class User {
     constructor(username) {
-        this.username = username;
-        this.following = [];
+        this.setUsername(username);
+        this.setFollowing([]);
     }
 
     addFollowing = (username) => {
-        // Only add if not already added - collision
+        // Only add if not already added - prevent duplicates
         if (!this.following.includes(username)) {
             this.following.push(username);
         }
@@ -13,6 +13,10 @@ class User {
 
     setUsername = (username) => {
         this.username = username;
+    }
+
+    setFollowing = (following) => {
+        this.following = following;
     }
 
     getUsername = () => {

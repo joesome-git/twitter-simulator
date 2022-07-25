@@ -1,6 +1,10 @@
 class Feed {
     constructor(tweet) {
-        this.tweets = [tweet];
+        this.setTweets([tweet]);
+    }
+
+    setTweets = (tweets) => {
+        this.tweets = tweets;
     }
 
     addTweet = (tweet) => {

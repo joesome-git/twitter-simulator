@@ -1,12 +1,12 @@
 class Tweet {
     constructor({ tweetId, username, message }) {
-        this.tweetId = tweetId;
-        this.username = username;
-        this.message = message;
+        this.setId(tweetId);
+        this.setUsername(username);
+        this.setMessage(message);
     }
 
-    setId = (id) => {
-        this.is = is;
+    setId = (tweetId) => {
+        this.tweetId = tweetId;
     }
 
     setUsername = (username) => {
@@ -17,7 +17,7 @@ class Tweet {
         this.message = message;
     }
 
-    getId = () => {
+    getTweetId = () => {
         return this.tweetId;
     }
 

@@ -55,7 +55,7 @@ test('get tweets', async () => {
     expect(feedData['Martin']?.getTweets()).toBe(undefined);
     
     expect(feedData['Alan']?.getTweets().length).toBe(2);
-    expect(feedData['Alan']?.getTweets()[0].getId()).toEqual(testData?.tweetId);
+    expect(feedData['Alan']?.getTweets()[0].getTweetId()).toEqual(testData?.tweetId);
     expect(feedData['Alan']?.getTweets()[0].getUsername()).toEqual(testData?.username);
     expect(feedData['Alan']?.getTweets()[0].getMessage()).toEqual(testData?.message);
 });
