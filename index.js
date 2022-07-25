@@ -8,14 +8,14 @@ const run = async () => {
         // read data from files
         const tweetsData = await _TWEETS.readData('tweet.txt');
         const usersData = _SORT.sortObjectByKey(await _USERS.readData('user.txt'));
-
+        // console.log(tweetsData)
         for (const user in usersData) {
 
-            const username = usersData[user]?.username;
+            const username = usersData[user]?.getUsername();
 
             console.log(username);
             // remove any users being followed that has no tweets to add to user twitter feed
-            const followingUsers = usersData[user]?.following.filter((followingUser) => !!tweetsData[followingUser]);
+            const followingUsers = usersData[user]?.getFollowing().filter((followingUser) => !!tweetsData[followingUser]);
 
             // get all tweets from users followed
             const followingUsersTweets = followingUsers.map((followingUser) => tweetsData[followingUser]);
@@ -28,7 +28,6 @@ const run = async () => {
                 console.log(`\t@${username}: ${tweet}`);
             });
         }
-
     } catch (error) {
         console.error(error);
     }

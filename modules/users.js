@@ -1,5 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
+const User = require('../class/User');
 
 /**
  * https://nodejs.org/api/readline.html#readline_example_read_file_stream_line_by_line
@@ -25,23 +26,17 @@ const readData = async (filename) => {
 
             // read each line and populate users object map
             if (!users[username]) {
-                users[username] = {
-                    username, following: []
-                };
+                users[username] = new User(username);
             }
+
 
             following.split(',').map((followsUsername) => {
                 // read each line and populate users object
                 if (!users[followsUsername]) { // if user (following) does not already exists, add to users object map
-                    users[followsUsername] = {
-                        username: followsUsername, following: []
-                    };
+                    users[followsUsername] = new User(followsUsername);
                 }
-                // if user does is not already follow `followsUsername`
                 // add user as follower to `followsUsername`
-                if (!users[username]?.following.includes(followsUsername)) { 
-                    users[username]?.following.push(followsUsername);
-                }
+                users[username]?.addFollowing(followsUsername);
             });
         }
     } catch (error) {
