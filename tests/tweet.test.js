@@ -58,6 +58,4 @@ test('get tweets', async () => {
     expect(feedData['Alan']?.getTweets()[0].getId()).toEqual(testData?.tweetId);
     expect(feedData['Alan']?.getTweets()[0].getUsername()).toEqual(testData?.username);
     expect(feedData['Alan']?.getTweets()[0].getMessage()).toEqual(testData?.message);
-
-
 });

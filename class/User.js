@@ -6,9 +6,6 @@ class User {
 
     addFollowing = (username) => {
         // Only add if not already added - collision
-        // if (!this.following[newUsername]) {
-        //     this.following[newUsername] = user;
-        // }
         if (!this.following.includes(username)) { 
             this.following.push(username);
         }
